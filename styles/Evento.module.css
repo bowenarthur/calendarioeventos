@@ -1,0 +1,82 @@
+.eventos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.eventos div {
+    width: 50%;
+    margin: 0;
+}
+
+.haveEvent {
+    background-color: lightgreen;
+}
+
+.formEvento input[type=time],
+.formEvento input[type=text] {
+    font-size: 1.5rem;
+    padding: 1%;
+    margin-bottom: 2%;
+    width: 50%;
+    border: 0.5px solid rgb(199, 199, 199);
+    border-radius: 0.3rem;
+}
+
+.formEvento label {
+    font-size: 1.5rem;
+}
+
+.botaoEvento {
+    background-color: rgb(70, 70, 255);
+    color: white;
+    width: 30%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 2%;
+    margin-top: 4%;
+}
+
+.botaoEvento:hover {
+    background-color: rgba(70, 70, 255, 0.9);
+}
+
+.tabelaEvento {
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 5%;
+    background-color: #fff;
+    font-size: 1.3rem;
+    table-layout: auto;
+}
+
+.tabelaEvento th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.tabelaEvento th {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    padding: 0.2% 0;
+}
+
+.tabelaEvento td {
+    padding: 1%;
+    height: auto;
+}
+
+.botaoIcone{
+    background-color: transparent;
+    border: none;
+    margin:2%;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.botaoIcone:hover{
+    color: rgba(0, 0, 0, 0.6);
+}
