@@ -19,7 +19,7 @@ export default async function signup(req, res) {
 
             bcrypt.hash(password, 12, async function (err, hash) {
                 // Store hash in your password DB.
-                const user = await User.create({...req.body, password: hash})
+                const user = await User.create({ ...req.body, password: hash })
 
                 return res.status(200).send('Success')
             });

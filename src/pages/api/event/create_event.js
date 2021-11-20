@@ -3,22 +3,22 @@ import User from '../../../models/user'
 import authenticate from '../../../middleware/authenticate'
 
 const createEvent = async (req, res) => {
-    if(req.method == 'POST'){
+    if (req.method == 'POST') {
         const id = req.user.id
-        if(!req.body.start || !req.body.end || !req.body.description){
+        if (!req.body.start || !req.body.end || !req.body.description) {
             return res.status(400).send("Missing event parameters")
         }
-        try{
+        try {
             const user = await User.findOne({ _id: id })
             if (!user) {
                 return res.status(400).send('User not found')
             }
-            const event = await Event.create({...req.body, user: user})
+            const event = await Event.create({ ...req.body, user: user })
             return res.status(200).send(event)
-        }catch (error) {
+        } catch (error) {
             return res.status(400).send(error)
         }
-    }else{
+    } else {
         res.status(405).send('Request method not supported')
     }
 }

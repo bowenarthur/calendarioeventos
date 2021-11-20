@@ -1,14 +1,14 @@
-import Event from '../../../models/event'
-import authenticate from '../../../middleware/authenticate'
+import Event from '../../../../models/event'
+import authenticate from '../../../../middleware/authenticate'
 
 const updateEvent = async (req, res) => {
 
     if (req.method == 'PUT') {
 
-        const id = req.params.id
+        const id = req.query.id
 
         try {
-            if(!req.body.start || !req.body.end || !req.body.description){
+            if (!req.body.start || !req.body.end || !req.body.description) {
                 return res.status(400).send("Missing event parameters")
             }
 

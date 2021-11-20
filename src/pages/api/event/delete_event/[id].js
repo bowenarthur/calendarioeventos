@@ -1,11 +1,11 @@
-import Event from '../../../models/event'
-import authenticate from '../../../middleware/authenticate'
+import Event from '../../../../models/event'
+import authenticate from '../../../../middleware/authenticate'
 
 const deleteEvent = async (req, res) => {
 
     if (req.method == 'DELETE') {
 
-        const id = req.params.id
+        const id = req.query.id
 
         try {
             const event = await Event.findByIdAndDelete(id)
