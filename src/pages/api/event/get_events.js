@@ -7,6 +7,7 @@ const getJobs = async (req, res) => {
             const id = req.user.id
             let events = await Event.find({ user: id })
                 .populate('user')
+                .sort({start: 1})
 
             return res.status(200).send(events)
         } catch (error) {
