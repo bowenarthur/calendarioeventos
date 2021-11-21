@@ -21,7 +21,7 @@ export default class Login extends React.Component {
                 location.reload()
             })
             .catch(err => {
-                alert(err)
+                alert(err.response.data)
             })
     }
 

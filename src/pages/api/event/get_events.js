@@ -13,7 +13,7 @@ const getJobs = async (req, res) => {
             return res.status(400).send(error)
         }
     } else {
-        res.status(405).send('Request method not supported')
+        res.status(405).send('Método de requisição não suportado')
     }
 }
 

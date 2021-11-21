@@ -11,7 +11,7 @@ const updateData = async (req, res) => {
             const user = await User.findByIdAndUpdate(id, req.body, { new: true })
 
             if (!user) {
-                return res.status(400).send('User not found')
+                return res.status(400).send('Usuário não encontrado')
             }
 
             return res.status(200).send(user)
@@ -21,7 +21,7 @@ const updateData = async (req, res) => {
         }
 
     } else {
-        res.status(405).send('Request method not supported')
+        res.status(405).send('Método de requisição não suportado')
     }
 }
 

@@ -11,7 +11,7 @@ const deleteEvent = async (req, res) => {
             const event = await Event.findByIdAndDelete(id)
 
             if (!event) {
-                return res.status(400).send('Event not found')
+                return res.status(400).send('Evento não encontrado')
             }
 
             return res.status(200).send(event)
@@ -21,7 +21,7 @@ const deleteEvent = async (req, res) => {
         }
 
     } else {
-        res.status(405).send('Request method not supported')
+        res.status(405).send('Método de requisição não suportado')
     }
 }
 

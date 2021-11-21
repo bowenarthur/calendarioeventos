@@ -10,18 +10,18 @@ export default async function signup(req, res) {
         try {
 
             if (!name || !password || !email) {
-                return res.status(400).send('Missing signup parameters')
+                return res.status(400).send('Dados de cadastro incompletos')
             }
 
             if (await User.findOne({ email: email })) {
-                return res.status(400).send('E-mail already used')
+                return res.status(400).send('E-mail já está sendo usado')
             }
 
             bcrypt.hash(password, 12, async function (err, hash) {
                 // Store hash in your password DB.
                 const user = await User.create({ ...req.body, password: hash })
 
-                return res.status(200).send('Success')
+                return res.status(200).send('Sucesso')
             });
 
         } catch (e) {
@@ -29,7 +29,7 @@ export default async function signup(req, res) {
         }
 
     } else {
-        return res.status(405).send('Request method not supported')
+        return res.status(405).send('Método de requisição não suportado')
     }
 
 }

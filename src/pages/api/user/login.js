@@ -10,13 +10,13 @@ const login = async (req, res) => {
             const { email, password } = req.body
 
             if (!password || !email) {
-                return res.status(400).send('Missing auth parameters')
+                return res.status(400).send('Parâmetros de autenticação incompletos')
             }
 
             const user = await User.findOne({ email: email }).select('+password')
 
             if (!user) {
-                return res.status(400).send('User not found')
+                return res.status(400).send('Usuário não encontrado')
             }
 
             bcrypt.compare(password, user.password, async function (err, result) {
@@ -31,7 +31,7 @@ const login = async (req, res) => {
                     })
 
                 } else {
-                    res.status(405).send('Wrong email or password')
+                    res.status(405).send('E-mail ou senha incorretos')
                 }
 
             });
@@ -39,7 +39,7 @@ const login = async (req, res) => {
             return res.status(400).send(e.message)
         }
     } else {
-        return res.status(405).send('Request method not supported')
+        return res.status(405).send('Método de requisição não suportado')
     }
 
 }

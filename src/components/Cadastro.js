@@ -20,7 +20,7 @@ export default class Cadastro extends React.Component {
                 location.reload()
             })
             .catch(err => {
-                alert(err)
+                alert(err.response.data)
             })
     }
 

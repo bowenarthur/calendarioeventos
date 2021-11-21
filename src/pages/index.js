@@ -46,7 +46,7 @@ export default class Home extends React.Component {
           })
         })
         .catch(err => {
-          alert(err)
+          alert(err.response.data)
         })
     }
   }

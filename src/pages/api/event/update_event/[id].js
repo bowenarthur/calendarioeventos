@@ -9,13 +9,13 @@ const updateEvent = async (req, res) => {
 
         try {
             if (!req.body.start || !req.body.end || !req.body.description) {
-                return res.status(400).send("Missing event parameters")
+                return res.status(400).send("Parâmetros de evento incompletos")
             }
 
             const event = await Event.findByIdAndUpdate(id, req.body, { new: true })
 
             if (!event) {
-                return res.status(400).send('Event not found')
+                return res.status(400).send('Evento não encontrado')
             }
 
             return res.status(200).send(event)
@@ -25,7 +25,7 @@ const updateEvent = async (req, res) => {
         }
 
     } else {
-        res.status(405).send('Request method not supported')
+        res.status(405).send('Método de requisição não suportado')
     }
 }
 
