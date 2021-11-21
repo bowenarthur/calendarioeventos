@@ -9,10 +9,6 @@
     margin: 0;
 }
 
-.haveEvent {
-    background-color: lightgreen;
-}
-
 .formEvento input[type=time],
 .formEvento input[type=text] {
     font-size: 1.5rem;
@@ -79,4 +75,25 @@
 
 .botaoIcone:hover{
     color: rgba(0, 0, 0, 0.6);
+}
+
+@media only screen and (max-width: 768px) {
+    .eventos {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .eventos div {
+        width: 100%;
+        margin-bottom: 10%;
+    }
+    
+    .formEvento input[type=time],
+    .formEvento input[type=text] {
+        width: 60%;
+    }
+        
+    .botaoEvento {
+        width: 50%;
+    }
 }
