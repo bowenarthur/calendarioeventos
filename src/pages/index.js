@@ -70,10 +70,12 @@ export default class Home extends React.Component {
   }
 
   handleChangeDate = (value) => {
-    this.setState({
-      value: value,
-      openEvento: true
-    })
+    if (localStorage.getItem('token') && localStorage.getItem('nome')) {
+      this.setState({
+        value: value,
+        openEvento: true
+      })
+    }else this.setState({value:value})
   }
 
   mostrarCadastro = () => {
