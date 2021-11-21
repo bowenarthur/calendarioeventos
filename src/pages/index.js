@@ -46,7 +46,9 @@ export default class Home extends React.Component {
           })
         })
         .catch(err => {
-          alert(err.response.data)
+          if(err.response.data === 'Token inválido'){
+            this.sair()
+          }else alert(err.response.data)
         })
     }
   }
