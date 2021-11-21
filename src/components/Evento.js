@@ -34,6 +34,30 @@ export default class Evento extends React.Component {
         })
     }
 
+    testeHoras = (inicio, fim) => {
+        if (inicio.getHours() < fim.getHours()) {
+            return true
+        } else if (inicio.getHours() === fim.getHours() && inicio.getMinutes() < fim.getMinutes()) {
+            return true
+        } else return false
+    }
+
+    testeConflito = (inicio, fim) =>{
+        let conflito = []
+        this.props.eventos.map((evento) => {
+            let start = new Date(evento.start)
+            let end = new Date(evento.end)
+            let i = new Date(inicio)
+            let f = new Date(fim)
+            if(this.testeHoras(f, start) || this.testeHoras(end, i)){
+                conflito.push(true)
+            }else{
+                conflito.push(false)
+            }
+        })
+        return conflito.indexOf(false) >=0 ? false : true
+    }
+
     submit = () => {
         if (localStorage.getItem('token') && localStorage.getItem('nome')) {
             const token = localStorage.getItem('token')
@@ -46,30 +70,36 @@ export default class Evento extends React.Component {
             inicio.setHours(this.state.inicio.slice(0, 2), this.state.inicio.slice(3, 5))
             let fim = new Date(this.props.dia)
             fim.setHours(this.state.fim.slice(0, 2), this.state.fim.slice(3, 5))
-            const data = {
-                start: inicio,
-                end: fim,
-                description: this.state.descricao
-            }
-            if (this.state.titulo === "Cadastrar") {
-                axios.post('api/event/create_event', data, config)
-                    .then(res => {
-                        alert("Evento cadastrado com sucesso!")
-                        location.reload()
-                    })
-                    .catch(err => {
-                        alert(err)
-                    })
-            } else if (this.state.titulo === "Alterar") {
-                axios.put('api/event/update_event/' + this.state.id, data, config)
-                    .then(res => {
-                        alert("Evento alterado com sucesso!")
-                        location.reload()
-                    })
-                    .catch(err => {
-                        alert(err)
-                    })
-            } else alert("Ocorreu um erro")
+            if (inicio > new Date()) {
+                if (this.testeHoras(inicio, fim)) {
+                    if(this.testeConflito(inicio, fim)){
+                        const data = {
+                            start: inicio,
+                            end: fim,
+                            description: this.state.descricao
+                        }
+                        if (this.state.titulo === "Cadastrar") {
+                            axios.post('api/event/create_event', data, config)
+                                .then(res => {
+                                    alert("Evento cadastrado com sucesso!")
+                                    location.reload()
+                                })
+                                .catch(err => {
+                                    alert(err.response.data)
+                                })
+                        } else if (this.state.titulo === "Alterar") {
+                            axios.put('api/event/update_event/' + this.state.id, data, config)
+                                .then(res => {
+                                    alert("Evento alterado com sucesso!")
+                                    location.reload()
+                                })
+                                .catch(err => {
+                                    alert(err.response.data)
+                                })
+                        } else alert("Ocorreu um erro")
+                    }else alert("Existe um conflito com um evento já marcado")
+                } else alert("A hora de início deve ser menor que a hora de fim")
+            } else alert("Você só pode criar eventos em datas futuras")
         } else alert("Você deve fazer login para cadastrar um evento")
     }
 
@@ -105,7 +135,6 @@ export default class Evento extends React.Component {
             descricao: evento.description,
             id: evento._id
         })
-        console.log(this.state.inicio)
     }
 
     deletarEvento = (id) => {
@@ -124,7 +153,7 @@ export default class Evento extends React.Component {
                         location.reload()
                     })
                     .catch(err => {
-                        alert(err)
+                        alert(err.response.data)
                     })
             }
         }
