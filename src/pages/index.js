@@ -26,7 +26,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('token') && localStorage.getItem('nome')) {
-      this.setState({ nome: localStorage.getItem('nome'), value: new Date()})
+      this.setState({ nome: localStorage.getItem('nome')})
       this.getEventos()
     }
   }
