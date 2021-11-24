@@ -19,14 +19,14 @@ export default class Home extends React.Component {
       openLogin: false,
       openEvento: false,
       openCadastro: false,
-      value: new Date(),
+      value: "",
       nome: ""
     }
   }
 
   componentDidMount() {
     if (localStorage.getItem('token') && localStorage.getItem('nome')) {
-      this.setState({ nome: localStorage.getItem('nome') })
+      this.setState({ nome: localStorage.getItem('nome'), value: new Date()})
       this.getEventos()
     }
   }
