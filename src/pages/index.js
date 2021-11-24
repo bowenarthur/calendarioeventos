@@ -19,7 +19,7 @@ export default class Home extends React.Component {
       openLogin: false,
       openEvento: false,
       openCadastro: false,
-      value: "",
+      value: new Date(),
       nome: ""
     }
   }
