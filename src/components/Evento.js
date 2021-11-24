@@ -24,7 +24,7 @@ export default class Evento extends React.Component {
 
     getTime(data) {
         const aux = new Date(data);
-        let minutos = aux.getMinutes() > 10 ? aux.getMinutes() : "0" + aux.getMinutes()
+        let minutos = aux.getMinutes() < 10 ? "0" + aux.getMinutes() :  aux.getMinutes()
         return aux.getHours() + ":" + minutos
     }
 
